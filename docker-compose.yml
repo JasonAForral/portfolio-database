@@ -1,0 +1,21 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: php -S 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+  db:
+    image: mysql:5.7.15
+    ports:
+      - "3306:3306"
+    volumes: 
+      - "./.data/db:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: php
+      MYSQL_DATABASE: php
+      MYSQL_USER: php
+      MYSQL_PASSWORD: php
